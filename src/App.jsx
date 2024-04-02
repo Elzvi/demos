@@ -1,27 +1,24 @@
+import { useCallback, useEffect, useState } from 'react';
 import './App.css';
+import InputBlock from './InputBlock';
 
 function App() {
+  const [value, setValue] = useState('')
+  const onClick = useCallback(() => {
+    console.log('click')
+  }, [])
+  const onChange = useCallback((e) => {
+    console.log('change')
+    setValue(e.target.value)
+  }, [])
+
+  useEffect(() => {
+    console.log('rerender app')
+  })
   return (
     <div className="App">
-      <header className="App-header">
-        <img src="Octocat.png" className="App-logo" alt="logo" />
-        <p>
-          GitHub Codespaces <span className="heart">♥️</span> React
-        </p>
-        <p className="small">
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+      <div>{value}</div>
+      <InputBlock onChange={onChange} onClick={onClick} text="клик"/>
     </div>
   );
 }
